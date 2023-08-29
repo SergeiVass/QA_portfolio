@@ -1,0 +1,5 @@
+## SQL
+
+Финально задание по теме SQL, где мы применяем на практике Select-запросы, агрегацию данных, объединение таблиц.
+
+https://docs.google.com/spreadsheets/d/1uswchY7HTEGDlliGUwqrr7lSRn6BXgCzuu0MN3T8SjM/edit?usp=sharing
