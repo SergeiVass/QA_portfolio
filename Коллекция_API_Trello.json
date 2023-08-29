@@ -1,0 +1,655 @@
+{
+	"info": {
+		"_postman_id": "0e1bd0b9-c37a-4c26-b23d-ae22cbc2492a",
+		"name": "Trello lesson 5",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25722607"
+	},
+	"item": [
+		{
+			"name": "move card",
+			"item": [
+				{
+					"name": "Create a new Card",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var key = \"cardId\"",
+									"var value = pm.response.json().id",
+									"",
+									"pm.collectionVariables.set(key, value);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"idList\": \"{{listId}}\",\n    \"token\": \"{{mytoken}}\",\n    \"name\": \"{{$randomColor}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/{{version}}/cards",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"{{version}}",
+								"cards"
+							]
+						},
+						"description": "Create a new card"
+					},
+					"response": []
+				},
+				{
+					"name": "Create List",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var key = \"listId\"",
+									"var value = pm.response.json().id",
+									"",
+									"pm.collectionVariables.set(key, value);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"{{$randomCity}}\",\n    \"idBoard\": \"{{boardId}}\",\n    \"token\": \"{{mytoken}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/{{version}}/lists",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"{{version}}",
+								"lists"
+							]
+						},
+						"description": "Create a new List on a Board"
+					},
+					"response": []
+				},
+				{
+					"name": "Update a Card",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"token\": \"{{mytoken}}\",\n    \"idList\": \"{{listId}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/{{version}}/cards/{{cardId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"{{version}}",
+								"cards",
+								"{{cardId}}"
+							]
+						},
+						"description": "Update a card"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Create Board",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var key = \"boardId\"",
+							"var value = pm.response.json().id",
+							"",
+							"pm.collectionVariables.set(key, value);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"{{$randomStreetName}}\",\n    \"token\": \"{{mytoken}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/{{version}}/boards",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"{{version}}",
+						"boards"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get board",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"token\": \"{{mytoken}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/{{version}}/boards/{{boardId}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"{{version}}",
+						"boards",
+						"{{boardId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete board",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"token\": \"{{mytoken}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/{{version}}/boards/{{boardId}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"{{version}}",
+						"boards",
+						"{{boardId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete board Copy",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"token\": \"{{mytoken}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/{{version}}/boards/{{boardId}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"{{version}}",
+						"boards",
+						"{{boardId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create List",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var key = \"listId\"",
+							"var value = pm.response.json().id",
+							"",
+							"pm.collectionVariables.set(key, value);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"{{$randomCity}}\",\n    \"idBoard\": \"{{boardId}}\",\n    \"token\": \"{{mytoken}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/{{version}}/lists",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"{{version}}",
+						"lists"
+					]
+				},
+				"description": "Create a new List on a Board"
+			},
+			"response": []
+		},
+		{
+			"name": "Get lists",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"token\": \"{{mytoken}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/{{version}}/lists/{{listId}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"{{version}}",
+						"lists",
+						"{{listId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a new Card",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var key = \"cardId\"",
+							"var value = pm.response.json().id",
+							"",
+							"pm.collectionVariables.set(key, value);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"idList\": \"{{listId}}\",\n    \"token\": \"{{mytoken}}\",\n    \"name\": \"{{$randomColor}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/{{version}}/cards",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"{{version}}",
+						"cards"
+					]
+				},
+				"description": "Create a new card"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a Card",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/{{version}}/cards/{{cardId}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"{{version}}",
+						"cards",
+						"{{cardId}}"
+					]
+				},
+				"description": "Delete a Card"
+			},
+			"response": []
+		},
+		{
+			"name": "Update a Card",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"{{$randomCountry}}\",\n    \"token\": \"{{mytoken}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/{{version}}/cards/{{cardId}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"{{version}}",
+						"cards",
+						"{{cardId}}"
+					]
+				},
+				"description": "Update a card"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Cards in a List",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"token\": \"{{mytoken}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/{{version}}/lists/{{listId}}/cards?fields=id",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"{{version}}",
+						"lists",
+						"{{listId}}",
+						"cards"
+					],
+					"query": [
+						{
+							"key": "fields",
+							"value": "id"
+						}
+					]
+				},
+				"description": "List the cards in a list"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Lists on a Board",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"token\": \"{{mytoken}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/{{version}}/boards/{{boardId}}/lists?fields=id",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"{{version}}",
+						"boards",
+						"{{boardId}}",
+						"lists"
+					],
+					"query": [
+						{
+							"key": "fields",
+							"value": "id"
+						}
+					]
+				},
+				"description": "List the cards in a list"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Boards of member",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"token\": \"{{mytoken}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/{{version}}/members/{{memberId}}/boards?fields=id",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"{{version}}",
+						"members",
+						"{{memberId}}",
+						"boards"
+					],
+					"query": [
+						{
+							"key": "fields",
+							"value": "id"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add a new comment to a card",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"text\": \"{{$randomLoremWords}}\",\n    \"token\": \"{{mytoken}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/{{version}}/cards/{{cardId}}/actions/comments",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"{{version}}",
+						"cards",
+						"{{cardId}}",
+						"actions",
+						"comments"
+					]
+				},
+				"description": "Update a card"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "mytoken",
+			"value": "645d148134f51e6c0dfb6fbe/ATTSY7ofhAXGQpeWWB6C6fZPh0HqctlkFbxQzYJ1QRy2ZeNteiTxrFYTrNL8tydyiTxt61EE4355",
+			"type": "string"
+		},
+		{
+			"key": "boardId",
+			"value": ""
+		},
+		{
+			"key": "baseUrl",
+			"value": "https://api.trello.com"
+		},
+		{
+			"key": "version",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "listId",
+			"value": ""
+		},
+		{
+			"key": "cardId",
+			"value": ""
+		},
+		{
+			"key": "memberId",
+			"value": "645d148134f51e6c0dfb6fbe",
+			"type": "string"
+		}
+	]
+}
